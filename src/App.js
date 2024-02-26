@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+import './App.css'
+import RecipeList from './components/RecipeList'
+import Home from './components/Home'
+import Recepie from './components/Recepie'
+import { Route,RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 function App() {
+
+  const route = createBrowserRouter([
+    {path: "/",
+     element: <Home />
+  },
+  {
+    path: '/foods',
+    element: <RecipeList />
+  },
+  {
+    path: "/recipes/:recipeId",
+    element: <Recepie />
+  }
+  ])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+     <RouterProvider router={route} />
+    </>
+  )
 }
 
-export default App;
+export default App
